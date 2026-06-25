@@ -1,66 +1,152 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Perfect Translate
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Perfect Translate is a Laravel-based translation marketplace built for clients and translators.
+It combines role-based project posting, translator profiles, applications, chat, sprint-based project management, review workflows, and Filament admin support.
 
-## About Laravel
+## Key Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Client and translator user roles with Jetstream authentication
+- Client project posting and management
+- Translator profile, portfolio, certificate uploads, and verification
+- Project applications with accept/decline workflows
+- Chat per project with file upload support
+- Sprint progress tracking and client feedback
+- Reviews for completed projects
+- Notifications for applications, project updates, and verification
+- Filament admin panel for managing resources
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2+ and Laravel 11
+- Laravel Jetstream with Livewire
+- Filament admin panel
+- Tailwind CSS, Vite, React, Bootstrap
+- Pusher / Laravel Echo for realtime features
+- SQLite / MySQL compatible database support
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repository
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/your-repo/Perfect-Translate-main.git
+cd Perfect-Translate-main
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Install PHP dependencies
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Install Node dependencies
 
-### Premium Partners
+```bash
+npm install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. Copy environment variables
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Generate application key
 
-## Code of Conduct
+```bash
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Configure database connection
 
-## Security Vulnerabilities
+- Default uses `DB_CONNECTION=sqlite`
+- For MySQL, update `DB_CONNECTION`, `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. Run migrations
+
+```bash
+php artisan migrate
+```
+
+8. Optionally seed the database if seeders exist
+
+```bash
+php artisan db:seed
+```
+
+9. Build frontend assets
+
+```bash
+npm run dev
+```
+
+10. Start the local server
+
+```bash
+php artisan serve
+```
+
+Then open the application at `http://127.0.0.1:8000`.
+
+## Local Development
+
+- `npm run dev` — start Vite development server
+- `npm run build` — compile production assets
+- `php artisan serve` — run Laravel locally
+
+## Project Workflow
+
+- Clients can register, post projects, upload documents, manage sprints, and accept translator applications.
+- Translators can create profiles, upload certificates, browse open projects, submit applications, and participate in project chat.
+- The application includes dedicated routes for:
+  - project discovery and filtering
+  - translator and client profile viewing
+  - application status pages
+  - project chat and file uploads
+  - sprint progress and feedback
+
+## Admin Panel
+
+If the Filament admin panel is configured, use `/admin` to access the backend interface and manage resources such as:
+- Applications
+- Clients
+- Translators
+- Projects
+- Portfolios
+- Reviews
+
+## Authentication
+
+- Authentication is handled by Laravel Fortify and Jetstream with Livewire.
+- User roles are used to separate client and translator functionality.
+- Email verification is required for protected routes.
+
+## Environment Notes
+
+The default `.env.example` includes recommended values for:
+- `APP_URL`
+- `DB_CONNECTION`
+- `SESSION_DRIVER`
+- `BROADCAST_CONNECTION`
+- `MAIL_MAILER`
+- `FILESYSTEM_DISK`
+
+For real-time chat and notifications, configure Pusher settings in `.env` if using broadcasting.
+
+## Testing
+
+Run the test suite with:
+
+```bash
+php artisan test
+```
+
+or with Pest:
+
+```bash
+./vendor/bin/pest
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open source and available under the MIT License.
